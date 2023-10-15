@@ -1,42 +1,147 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+# Directorios de compilación
+/dist/
+/out/
+/build/
+/bin/
+/tmp/
+/bazel-out/
 
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
-
-# Node
-/node_modules
+# Dependencias de Node.js
+/node_modules/
 npm-debug.log
 yarn-error.log
 
-# IDEs and editors
+# IDEs y editores
 .idea/
 .project
 .classpath
 .c9/
-*.launch
 .settings/
 *.sublime-workspace
+*.code-workspace
 
-# Visual Studio Code
-.vscode/*
+# Archivos específicos de Visual Studio Code
+.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-.history/*
 
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
+# Historial de cambios
+.history/
+
+# Carpetas y archivos generados por Angular
+/.angular/cache/
+/.sass-cache/
+/connect.lock/
+/coverage/
 /libpeerconnection.log
 testem.log
-/typings
+/typings/
 
-# System files
-.DS_Store
+# Archivos de sistema de Windows
 Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+Recycler/
+System Volume Information/
+ehthumbs_vista.db
+.DS_Store
+
+# Archivos temporales de macOS
+.AppleDouble/
+.DS_Store
+.Trashes
+dbfseventsd
+
+# Archivos de Thumbs.db de Windows en carpetas compartidas de VirtualBox o VMWare
+._*
+
+# Archivos temporales de Windows
+~$*
+*.tmp
+*.swp
+*.bak
+*.backup
+*.orig
+*.merge
+*.log
+*.log.[0-9]*
+*.part
+*.lck
+
+# Archivos de proyecto y caché de IntelliJ IDEA y WebStorm
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Archivos de proyecto y caché de PyCharm
+__pycache__/
+*.pyc
+
+# Caché y archivos de proyecto de Eclipse
+.classpath
+.project
+.settings/
+.metadata/
+bin/
+
+# Caché de NetBeans
+nbproject/private/
+
+# Archivos de caché de PhpStorm
+.idea/
+*.iml
+*.iws
+
+# Caché de RubyMine
+.idea/
+
+# Caché de Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Archivos de caché de Visual Studio
+.vscode/
+.vs/
+*.suo
+*.user
+*.sln.docstates
+
+# Archivos de caché de Xcode
+.DS_Store
+*.pbxuser
+*.xcuserstate
+project.xcworkspace/
+
+# Archivos de caché de Android Studio
+.idea/
+.gradle/
+local.properties
+/.idea/libraries/
+/build/
+
+# Archivos de caché de Qt Creator
+*.pro.user
+*.pro.user.*
+*.moc
+*.user
+Makefile
+
+# Archivos de caché de CLion
+.cmake/
+.idea/
+*.cmake
+CMakeLists.txt.user*
+CMakeCache.txt
+cmake_install.cmake
+
+# Archivos de caché de Rider
+.idea/
+*.sln.iml
+*.dotSettings.user
+
+# Archivos de caché de PyCharm
+.idea/
