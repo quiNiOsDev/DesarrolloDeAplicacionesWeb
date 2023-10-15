@@ -47,7 +47,22 @@ import { TransaccionReporteLibroComponent } from './components/transaccion-repor
 import { TransaccionReservaSalaComponent } from './components/transaccion-reserva-sala/transaccion-reserva-sala.component';
 import { TransaccionReporteSalaComponent } from './components/transaccion-reporte-sala/transaccion-reporte-sala.component';
 
-
+import { CrudAlumnoAddComponent } from './components/crud-alumno-add/crud-alumno-add.component';
+import { CrudAlumnoUpdateComponent } from './components/crud-alumno-update/crud-alumno-update.component';
+import { CrudLibroAddComponent } from './components/crud-libro-add/crud-libro-add.component';
+import { CrudLibroUpdateComponent } from './components/crud-libro-update/crud-libro-update.component';
+import { CrudTesisAddComponent } from './components/crud-tesis-add/crud-tesis-add.component';
+import { CrudTesisUpdateComponent } from './components/crud-tesis-update/crud-tesis-update.component';
+import { CrudAutorAddComponent } from './components/crud-autor-add/crud-autor-add.component';
+import { CrudAutorUpdateComponent } from './components/crud-autor-update/crud-autor-update.component';
+import { CrudSalaAddComponent } from './components/crud-sala-add/crud-sala-add.component';
+import { CrudSalaUpdateComponent } from './components/crud-sala-update/crud-sala-update.component';
+import { CrudProveedorAddComponent } from './components/crud-proveedor-add/crud-proveedor-add.component';
+import { CrudProveedorUpdateComponent } from './components/crud-proveedor-update/crud-proveedor-update.component';
+import { CrudEditorialAddComponent } from './components/crud-editorial-add/crud-editorial-add.component';
+import { CrudEditorialUpdateComponent } from './components/crud-editorial-update/crud-editorial-update.component';
+import { CrudRevistaUpdateComponent } from './components/crud-revista-update/crud-revista-update.component';
+import { CrudRevistaAddComponent } from './components/crud-revista-add/crud-revista-add.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +100,24 @@ import { TransaccionReporteSalaComponent } from './components/transaccion-report
     CrudEditorialComponent,
     CrudProveedorComponent,
  
+    CrudAlumnoAddComponent,
+    CrudLibroAddComponent,
+    CrudTesisAddComponent,
+    CrudAutorAddComponent,
+    CrudSalaAddComponent,
+    CrudRevistaAddComponent,
+    CrudEditorialAddComponent,
+    CrudProveedorAddComponent,
+
+    CrudAlumnoUpdateComponent,
+    CrudLibroUpdateComponent,
+    CrudTesisUpdateComponent,
+    CrudAutorUpdateComponent,
+    CrudSalaUpdateComponent,
+    CrudRevistaUpdateComponent,
+    CrudEditorialUpdateComponent,
+    CrudProveedorUpdateComponent,
+
     TransaccionAsignacionLibroComponent,
     TransaccionAsignacionOpcionComponent,
     TransaccionAsignacionRolComponent,

@@ -11,14 +11,21 @@ export class ProdInterceptorService implements HttpInterceptor {
   constructor(private tokenService: TokenService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log(">> intercept : " + req)
-    let intReq = req;
+    console.log(">> ProdInterceptorService >> intercept >>> " + req)
+    let request = req;
     const token = this.tokenService.getToken();
-    console.log(">> token : " + token)
+    console.log(">> ProdInterceptorService >>> token  >>> ")
     if (token != null) {
-      intReq = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + token)});
+      console.log(token)
+      request = req.clone({ headers: req.headers
+                                .set('Authorization', 'Bearer ' + token)
+                              });
+    
+      console.log(">> ProdInterceptorService >>> intReq >>> ")
+      console.log(request)
     }
-    return next.handle(intReq);
+
+    return next.handle(request);
   }
 }
 
