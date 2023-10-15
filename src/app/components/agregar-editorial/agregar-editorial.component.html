@@ -1,9 +1,40 @@
 <app-menu></app-menu>
 <div class="container">
-
   <div class="row">
     <mat-toolbar color="primary">
-      <span>Registra Tesis</span>
+      <span>Registrar Editorial</span>
     </mat-toolbar>
+  </div>
+  <div class="row" style="margin-top: 3%">
+    <mat-form-field class="col-md-4">
+      <mat-label>Razón Social</mat-label>
+      <input matInput [(ngModel)]="editorial.razonSocial">
+    </mat-form-field>
+
+    <mat-form-field class="col-md-4">
+      <mat-label>Dirección</mat-label>
+      <input matInput [(ngModel)]="editorial.direccion">
+    </mat-form-field>
+
+    <mat-form-field class="col-md-4">
+      <mat-label>RUC</mat-label>
+      <input matInput [(ngModel)]="editorial.ruc">
+    </mat-form-field>
+
+    <mat-form-field class="col-md-4">
+      <mat-label>Fecha de Creación</mat-label>
+      <input matInput [(ngModel)]="editorial.fechaCreacion" type="date">
+    </mat-form-field>
+
+    <mat-form-field class="col-md-4">
+      <mat-label>País</mat-label>
+      <mat-select [(ngModel)]="editorial.pais.idPais">
+        <mat-option value="-1">[Seleccione]</mat-option>
+        <mat-option *ngFor="let x of lstPais" [value]="x.idPais">{{ x.nombre }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <button mat-raised-button type="submit" color="primary" (click)="registra()">Registrar</button>
   </div>
 </div>
