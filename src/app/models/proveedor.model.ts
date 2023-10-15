@@ -1,15 +1,16 @@
+import { DataCatalogo } from "./dataCatalogo.model";
 import { Pais } from "./pais.model";
 import { Usuario } from "./usuario.model";
 
 export class Proveedor {
-    /* idProveedor?:number;
+    idProveedor?:number;
     razonsocial?:string;
     ruc?:string;
     direccion?:string;
     celular?:string;
     contacto?:string;
     pais?:Pais;
-    tipoProveedor?:
+    tipoProveedor?:DataCatalogo
     usuarioRegistro?:Usuario;
-    usuarioActualiza?:Usuario; */
+    usuarioActualiza?:Usuario;
 }
