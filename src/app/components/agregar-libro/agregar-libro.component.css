@@ -1,0 +1,11 @@
+/* Estilos para dividir el formulario en dos columnas */
+.formulario-dos-columnas {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .formulario-dos-columnas > div {
+    flex: 1;
+    margin-right: 10px; /* Espacio entre las columnas, ajusta según sea necesario */
+  }
+  
