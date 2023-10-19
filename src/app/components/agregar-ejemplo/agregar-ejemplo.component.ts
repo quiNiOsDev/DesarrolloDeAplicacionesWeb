@@ -15,6 +15,7 @@ import Swal from 'sweetalert2'
 export class AgregarEjemploComponent {
 
   lstPais: Pais[] = [];
+
   ejemplo: Ejemplo ={
       descripcion: "",
       pais:{

@@ -1,4 +1,58 @@
 <app-menu></app-menu>
-<div style="padding: 2%">
-        <p>agregar-autor works!</p>
-</div>
+<div class="container">
+   
+
+                <div class="row">
+                        <mat-toolbar color="primary" >    
+                        <span>Registra Autor</span>    
+                        </mat-toolbar>  
+                </div>
+                
+                <div  class="row"  style="margin-top: 3%">
+                            <mat-form-field class="col-md-4">
+                                <mat-label>Nombres</mat-label>
+                                <input  matInput [(ngModel)] ="autor.nombres" >
+                            </mat-form-field>
+                            
+                            <mat-form-field class="col-md-4">
+                                <mat-label>Apellidos</mat-label>
+                                <input  matInput [(ngModel)] ="autor.apellidos" >
+                            </mat-form-field>
+
+                            <mat-form-field class="col-md-4">
+                                <mat-label>Nacimiento</mat-label>
+                                <input  matInput [(ngModel)] ="autor.fechaNacimiento" >
+                            </mat-form-field>
+
+                            <mat-form-field class="col-md-4">
+                                <mat-label>telefono</mat-label>
+                                <input  matInput [(ngModel)] ="autor.telefono" >
+                            </mat-form-field>
+
+                            <mat-form-field class="col-md-4">
+                                <mat-label>País</mat-label>
+                                <mat-select [(ngModel)]="autor.pais!.idPais">
+                                    <mat-option value="-1"> [Seleccione] </mat-option>
+                                    <mat-option  *ngFor="let x of lstPais" [value]="x.idPais">
+                                        {{x.nombre}}
+                                    </mat-option>   
+                                </mat-select> 
+                            </mat-form-field> 
+
+                            <mat-form-field class="col-md-4">
+                                <mat-label>Grado</mat-label>
+                                <mat-select [(ngModel)]="autor.grado!.idDataCatalogo">
+                                    <mat-option value="-1"> [Seleccione] </mat-option>
+                                    <mat-option  *ngFor="let x of lstGrado" [value]="x.idDataCatalogo">
+                                        {{x.descripcion}}
+                                    </mat-option>   
+                                </mat-select> 
+                            </mat-form-field> 
+                </div>
+                <div  class="row" >
+                    <button mat-raised-button type="submit" color="primary" (click)="registra()">Registra</button>
+                </div>
+ 
+  </div>
+  
+
