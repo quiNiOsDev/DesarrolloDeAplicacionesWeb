@@ -21,7 +21,7 @@ export class AgregarAutorComponent {
   autor: Autor ={
     nombres:"",
     apellidos:"",
-    fechaNacimiento:new Date(""),
+    fechaNacimiento:new Date(),
     telefono:"",
     pais :{
       idPais:-1
