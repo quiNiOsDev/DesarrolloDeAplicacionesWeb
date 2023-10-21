@@ -6,7 +6,47 @@
                         <span>Registra Revista</span>    
                         </mat-toolbar>  
                 </div>
-</div>
+                <div  class="row"  style="margin-top: 3%">
+                        <mat-form-field class="col-md-4">
+                            <mat-label>Nombre</mat-label>
+                            <input  matInput [(ngModel)] ="revista.nombre">
+                        </mat-form-field>
+
+                        <mat-form-field class="col-md-4">
+                            <mat-label>Frecuencia</mat-label>
+                            <input  matInput [(ngModel)] ="revista.frecuencia" >
+                        </mat-form-field>
+
+                        <mat-form-field class="col-md-4">
+                            <mat-label>Fecha de creacion</mat-label>
+                            <input type="date" matInput [(ngModel)] ="revista.fechaCreacion" >
+                        </mat-form-field>
+
+
+                        <mat-form-field class="col-md-4">
+                            <mat-label>País</mat-label>
+                            <mat-select [(ngModel)]="revista.pais!.idPais">
+                                <mat-option value="-1"> [Seleccione] </mat-option>
+                                <mat-option  *ngFor="let x of lstPais" [value]="x.idPais">
+                                    {{x.nombre}}
+                                </mat-option>   
+                            </mat-select> 
+                        </mat-form-field> 
+
+                        <mat-form-field class="col-md-4">
+                            <mat-label>Tipo</mat-label>
+                            <mat-select [(ngModel)]="revista.tipoRevista!.idDataCatalogo">
+                                <mat-option value="-1"> [Seleccione] </mat-option>
+                                <mat-option  *ngFor="let x of lstTipo" [value]="x.idDataCatalogo">
+                                    {{x.descripcion}}
+                                </mat-option>   
+                            </mat-select> 
+                        </mat-form-field> 
+            </div>
+            <div class="row">
+                <button mat-raised-button type="submit" color="primary" (click)="registra()">Enviar</button>
+            </div>
+        </div>
 
 
 
