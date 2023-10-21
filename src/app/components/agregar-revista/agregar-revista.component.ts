@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { DataCatalogo } from 'src/app/models/dataCatalogo.model';
 import { Pais } from 'src/app/models/pais.model';
-import { Revista } from 'src/app/models/revista.models';
+import { Revista } from 'src/app/models/revista.model';
 import { Usuario } from 'src/app/models/usuario.model';
 import { TokenService } from 'src/app/security/token.service';
 import { RevistaService } from 'src/app/services/revista.service';
