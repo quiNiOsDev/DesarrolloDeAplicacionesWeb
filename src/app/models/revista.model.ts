@@ -8,7 +8,7 @@ export class Revista {
     frecuencia?:string;
     fechaCreacion?:Date;
     pais?:Pais;
-    tipo?:DataCatalogo;
+    tipoRevista?:DataCatalogo;
     usuarioRegistro?:Usuario;
     usuarioActualiza?:Usuario;
 

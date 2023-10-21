@@ -25,7 +25,7 @@ export class AgregarRevistaComponent {
     pais :{
       idPais:-1
     },
-    tipo :{
+    tipoRevista :{
       idDataCatalogo:-1
     }
   }
@@ -33,13 +33,13 @@ export class AgregarRevistaComponent {
   objUsuario: Usuario ={};
 
   constructor(private revistaService : RevistaService, private utilService: UtilService, private tokenService: TokenService){
-    utilService.listaPais().subscribe(
+    this.utilService.listaPais().subscribe(
       x =>   this.lstPais=x
     )
-    utilService.listaTipoLibroRevista().subscribe(
+    this.utilService.listaTipoLibroRevista().subscribe(
       x =>   this.lstTipo=x
     )
-this.objUsuario.idUsuario = tokenService.getUserId();
+    this.objUsuario.idUsuario = tokenService.getUserId();
 
 }
 
@@ -49,11 +49,11 @@ registra(){
   this.revista.usuarioRegistro = this.objUsuario;
   console.log('Revista después de actualizar usuario:', this.revista);
   this.revistaService.registrar(this.revista).subscribe(
-    x=>{
+    (response: any)=>{
       Swal.fire({
         icon: 'info',
         title: 'Resultado del Registro',
-        text: x.mensaje,
+        text: response.mensaje,
       })
     },
   );
