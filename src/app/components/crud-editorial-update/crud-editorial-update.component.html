@@ -1,1 +1,41 @@
-<p>crud-editorial-update works!</p>
+<app-menu></app-menu>
+<div class="container">
+  <div class="row">
+    <mat-toolbar color="primary">
+      <span>Editar Editorial</span>
+    </mat-toolbar>
+  </div>
+  <div class="row" style="margin-top: 3%">
+    <mat-form-field class="col-md-4">
+      <mat-label>Razón Social</mat-label>
+      <input matInput [(ngModel)]="editorial.razonSocial">
+    </mat-form-field>
+
+    <mat-form-field class="col-md-4">
+      <mat-label>Dirección</mat-label>
+      <input matInput [(ngModel)]="editorial.direccion">
+    </mat-form-field>
+
+    <mat-form-field class="col-md-4">
+      <mat-label>RUC</mat-label>
+      <input matInput [(ngModel)]="editorial.ruc">
+    </mat-form-field>
+
+    <mat-form-field class="col-md-4">
+      <mat-label>Fecha de Creación</mat-label>
+      <input matInput [(ngModel)]="editorial.fechaCreacion" type="date">
+    </mat-form-field>
+
+    <mat-form-field class="col-md-4">
+      <mat-label>País</mat-label>
+      <mat-select [(ngModel)]="editorial.pais.idPais" name="pais">
+        <mat-option *ngFor="let pais of listaPaises" [value]="pais.idPais">
+          {{ pais.nombre }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="row">
+    <button mat-raised-button type="button" color="primary" (click)="editarEditorial()">Editar</button>
+  </div>
+</div>

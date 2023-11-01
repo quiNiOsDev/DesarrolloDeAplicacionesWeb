@@ -40,6 +40,8 @@ import { TransaccionReporteLibroComponent } from './components/transaccion-repor
 import { TransaccionAsignacionLibroComponent } from './components/transaccion-asignacion-libro/transaccion-asignacion-libro.component';
 import { TransaccionReservaSalaComponent } from './components/transaccion-reserva-sala/transaccion-reserva-sala.component';
 import { AgregarEjemploComponent } from './components/agregar-ejemplo/agregar-ejemplo.component';
+import {CrudEditorialAddComponent} from "./components/crud-editorial-add/crud-editorial-add.component";
+import {CrudEditorialUpdateComponent} from "./components/crud-editorial-update/crud-editorial-update.component";
 
 
 
@@ -71,6 +73,9 @@ const routes: Routes = [
   {path:"verCrudProveedor", component:CrudProveedorComponent },
   {path:"verCrudEditorial", component:CrudEditorialComponent },
   {path:"verCrudRevista", component:CrudRevistaComponent },
+
+  {path:"agregarEditorial", component:CrudEditorialAddComponent },
+  { path: 'editarEditorial/:id', component: CrudEditorialUpdateComponent },
 
   {path:"VerAsignacionRol", component:TransaccionAsignacionRolComponent },
   {path:"VerAsignacionOpcion", component:TransaccionAsignacionOpcionComponent },
