@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Autor } from 'src/app/models/autor.model';
 import { DataCatalogo } from 'src/app/models/dataCatalogo.model';
 import { Pais } from 'src/app/models/pais.model';
@@ -18,6 +19,16 @@ export class AgregarAutorComponent {
   lstGrado: DataCatalogo[] =[];
   lstPais: Pais[] = [];
 
+  formsRegistra = this.formBuilder.group({
+    validaNombre:['', [Validators.required,Validators.pattern('[a-zA-Zá-úÁ-ÚñÑ ]{3,30}')]],
+    validaApellido:['', [Validators.required,Validators.pattern('[a-zA-Zá-úÁ-ÚñÑ ]{3,30}')]],
+    validaTelefono: ['', [Validators.required, Validators.pattern('[0-9]{1,9}')]],
+    validaFechaNacimiento: ['', [Validators.required]],
+    validaPais: ['', Validators.min(1)] , 
+    validaGrado: ['', Validators.min(1)] , 
+
+  });
+
   autor: Autor ={
     nombres:"",
     apellidos:"",
@@ -32,7 +43,10 @@ export class AgregarAutorComponent {
   }
   objUsuario: Usuario = {} ;
 
-  constructor(private autorService : AutorService, private utilService: UtilService, private tokenService: TokenService){
+  constructor(private autorService : AutorService,
+     private utilService: UtilService,
+      private tokenService: TokenService,
+      private formBuilder: FormBuilder){
           utilService.listaPais().subscribe(
             x   =>   this.lstPais=x
           )
