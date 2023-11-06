@@ -10,6 +10,7 @@ export class Proveedor {
     celular?:string;
     contacto?:string;
     pais?:Pais;
+    estado?:number;
     tipoProveedor?:DataCatalogo
     usuarioRegistro?:Usuario;
     usuarioActualiza?:Usuario;
