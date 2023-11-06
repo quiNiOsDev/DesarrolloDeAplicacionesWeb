@@ -13,7 +13,23 @@ export class AutorService {
 
   constructor(private http:HttpClient) { }
 
-  registrar(data:Autor):Observable<any>{
-    return this.http.post(baseUrlAutor, data);
+  consultaPorNombre(filtro:string):Observable<Autor[]>{
+    return this.http.get<Autor[]>(baseUrlAutor+ "/listaAutorPorNombreLike/"+filtro);
   }
+
+  registrar(data:Autor):Observable<any>{
+    return this.http.post(baseUrlAutor+"/registraAutor", data);
+  }
+
+  actualiza(obj:Autor):Observable<any>{
+    return this.http.put(baseUrlAutor +"/actualizaAutor", obj);
+  }
+
+  elimina(idAutor:number):Observable<any>{
+    return this.http.delete(baseUrlAutor+"/eliminaAutor/"+idAutor)
+  }
+
+
+
+
 }
