@@ -1,1 +1,127 @@
-<p>crud-alumno-update works!</p>
+<div class="container">
+    <form class="mat-dialog-content" id="idFormModalidad" [formGroup]="formsActualiza">
+            <div class="row">
+                    <mat-toolbar color="primary">
+                            <span>Actualiza alumno</span>
+                    </mat-toolbar>
+            </div>
+            <div class="row" style="margin-top: 3%">
+                    <mat-form-field class="col-md-8">
+                            <mat-label>Nombres</mat-label>
+                            <input matInput name="nombres" [(ngModel)]="alumno.nombres"
+                                    formControlName="validaNombres" maxlength="30">
+                            <mat-hint style="color: red" *ngIf="formsActualiza.controls.validaNombres.touched">
+                                    <span *ngIf="formsActualiza.controls.validaNombres.hasError('required')">
+                                            El Nombre es requerido
+                                    </span>
+                                    <span *ngIf="formsActualiza.controls.validaNombres.hasError('pattern')">
+                                            El Nombre es de 3-30 caracteres
+                                    </span>
+                            </mat-hint>
+                    </mat-form-field>
+                    <mat-form-field class="col-md-4">
+                            <mat-label>DNI</mat-label>
+                            <input matInput name="dni" [(ngModel)]="alumno.dni" formControlName="validaDNI"
+                                    maxlength="8">
+                            <mat-hint style="color: red" *ngIf="formsActualiza.controls.validaDNI.touched">
+                                    <span *ngIf="formsActualiza.controls.validaDNI.hasError('required')">
+                                            El DNI es requerido
+                                    </span>
+                                    <span *ngIf="formsActualiza.controls.validaDNI.hasError('pattern')">
+                                            El DNI tiene 8 dígitos
+                                    </span>
+                            </mat-hint>
+                    </mat-form-field>
+                    <mat-form-field class="col-md-8">
+                            <mat-label>Apellidos</mat-label>
+                            <input matInput name="apellidos" [(ngModel)]="alumno.apellidos"
+                                    formControlName="validaApellidos" maxlength="30">
+                            <mat-hint style="color: red" *ngIf="formsActualiza.controls.validaApellidos.touched">
+                                    <span *ngIf="formsActualiza.controls.validaApellidos.hasError('required')">
+                                            El Apellido es requerido
+                                    </span>
+                                    <span *ngIf="formsActualiza.controls.validaApellidos.hasError('pattern')">
+                                            El Apellido es de 3-30 caracteres
+                                    </span>
+                            </mat-hint>
+                    </mat-form-field>
+                    <mat-form-field class="col-md-4">
+                            <mat-label>Teléfono</mat-label>
+                            <input matInput name="telefono" [(ngModel)]="alumno.telefono"
+                                    formControlName="validaTelefono" maxlength="9">
+                            <mat-hint style="color: red" *ngIf="formsActualiza.controls.validaTelefono.touched">
+                                    <span *ngIf="formsActualiza.controls.validaTelefono.hasError('required')">
+                                            El Telefono es requerido
+                                    </span>
+                                    <span *ngIf="formsActualiza.controls.validaTelefono.hasError('pattern')">
+                                            El Telefono tiene 9 dígitos
+                                    </span>
+                            </mat-hint>
+                    </mat-form-field>
+
+                    <mat-form-field class="col-md-8">
+                            <mat-label>Correo</mat-label>
+                            <input matInput name="correo" [(ngModel)]="alumno.correo"
+                                    formControlName="validaCorreo" >
+                            <mat-hint style="color: red" *ngIf="formsActualiza.controls.validaCorreo.touched">
+                                    <span *ngIf="formsActualiza.controls.validaTelefono.hasError('required')">
+                                            El Correo es requerido
+                                    </span>
+                                    <span *ngIf="formsActualiza.controls.validaTelefono.hasError('pattern')">
+                                            El Correo tiene @
+                                    </span>
+                            </mat-hint>
+                    </mat-form-field>
+                    <div class="col-md-4">
+                            <div class="form-group">
+                                    <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                                    <input type="date" class="form-control" id="fechaNacimiento"
+                                            [(ngModel)]="alumno.fechaNacimiento" formControlName="validaFechaNac">
+                            </div>
+                            <mat-hint style="color: red" *ngIf="formsActualiza.controls.validaTelefono.touched">
+                                    <span *ngIf="formsActualiza.controls.validaFechaNac.hasError('required')">
+                                            La fecha de nacimiento es requerido
+                                    </span>
+                            </mat-hint>
+                    </div>
+            </div>
+            <div class="row">
+                    <mat-form-field class="col-md-6">
+                            <mat-label>País</mat-label>
+                            <mat-select [(ngModel)]="alumno.pais!.idPais" name="pais" formControlName="validaPais">
+                                    <mat-option value="-1"> [Seleccione] </mat-option>
+                                    <mat-option *ngFor="let x of lstPais" [value]="x.idPais">
+                                            {{x.nombre}}
+                                    </mat-option>
+                            </mat-select>
+                    </mat-form-field>
+                    <mat-hint style="color: red" *ngIf="formsActualiza.controls.validaPais.touched">
+                            <span *ngIf="formsActualiza.controls.validaPais.hasError('min')">
+                                    El Pais es requerido
+                            </span>
+                    </mat-hint>
+                    <mat-form-field class="col-md-6">
+                            <mat-label>Modalidad</mat-label>
+                            <mat-select [(ngModel)]="alumno.modalidad!.idDataCatalogo" name="modalidad"
+                                    formControlName="validaModalidad">
+                                    <mat-option value="-1"> [Seleccione] </mat-option>
+                                    <mat-option *ngFor="let x of lstModalidad" [value]="x.idDataCatalogo">
+                                            {{x.descripcion}}
+                                    </mat-option>
+                            </mat-select>
+                    </mat-form-field>
+                    <mat-hint style="color: red" *ngIf="formsActualiza.controls.validaPais.touched">
+                            <span *ngIf="formsActualiza.controls.validaPais.hasError('min')">
+                                    La modalidad es requerido
+                            </span>
+                    </mat-hint>
+            </div>
+
+            <div mat-dialog-actions>
+                <button mat-raised-button type="submit" (click) = "actualiza()" color="primary"  [mat-dialog-close]="1">
+                    Actualiza
+                </button>
+            </div>
+
+    </form>
+</div>
