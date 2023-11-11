@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AppSettings } from '../app.settings';
 import { HttpClient } from '@angular/common/http';
 import { Proveedor } from '../models/proveedor.model';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 const baseUrlProveedor = AppSettings.API_ENDPOINT+ '/proveedor';
 
@@ -11,6 +11,9 @@ const baseUrlProveedor = AppSettings.API_ENDPOINT+ '/proveedor';
 })
 export class ProveedorService {
 
+  public proveedorList$ : BehaviorSubject<Proveedor[]> = new BehaviorSubject<Proveedor[]>([]);;
+  public proveedorListSus = this.proveedorList$.asObservable()
+
   constructor(private http:HttpClient) { }
 
   listar(filtro:string):Observable<any>{
@@ -18,7 +21,7 @@ export class ProveedorService {
   }
 
   registrar(data:Proveedor):Observable<any>{
-    return this.http.post(baseUrlProveedor, data);
+    return this.http.post(baseUrlProveedor+"/registraProveedor", data);
   }
 
   actualizar(data:Proveedor):Observable<any>{
@@ -28,6 +31,14 @@ export class ProveedorService {
   eliminar(id:number):Observable<any>{
     return this.http.delete(baseUrlProveedor+"/eliminaProveedor/"+id);
 
+  }
+
+  saveObs(lista:any[]){
+    this.proveedorList$.next(lista);
+  }
+
+  getObs(){
+    return this.proveedorListSus;
   }
 
   

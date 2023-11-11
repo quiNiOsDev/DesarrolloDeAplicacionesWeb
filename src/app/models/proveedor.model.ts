@@ -14,4 +14,5 @@ export class Proveedor {
     tipoProveedor?:DataCatalogo
     usuarioRegistro?:Usuario;
     usuarioActualiza?:Usuario;
+    fechaRegistro?:Date;
 }

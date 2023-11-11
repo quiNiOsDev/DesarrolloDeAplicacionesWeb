@@ -34,6 +34,10 @@ export class CrudProveedorComponent implements OnInit {
                private dialogService: MatDialog,
                private proveedorService:ProveedorService) {
 
+              this.proveedorService.proveedorListSus.subscribe((list)=>{
+                this.dataSource = new MatTableDataSource<Proveedor>(list);
+              })
+
               
    }
  
