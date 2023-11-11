@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './app.material.module';
 import { MatIconModule } from '@angular/material/icon';
+import { DatePipe } from '@angular/common'; // Importa DatePipe
 
 import { MenuComponent } from './menu/menu.component';
 import { IndexComponent } from './index/index.component';
@@ -81,7 +82,6 @@ import { CrudRevistaAddComponent } from './components/crud-revista-add/crud-revi
     AgregarProveedorComponent,
     AgregarEjemploComponent,
 
-
     ConsultaAlumnoComponent,
     ConsultaLibroComponent,
     ConsultaTesisComponent,
@@ -139,9 +139,10 @@ import { CrudRevistaAddComponent } from './components/crud-revista-add/crud-revi
     CommonModule,
     MatIconModule
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: ProdInterceptorService, multi: true }
-  ],
+	providers: [
+	  DatePipe,
+	  { provide: HTTP_INTERCEPTORS, useClass: ProdInterceptorService, multi: true }
+	],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

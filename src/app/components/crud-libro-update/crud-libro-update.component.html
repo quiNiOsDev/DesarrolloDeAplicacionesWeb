@@ -1,1 +1,69 @@
-<p>crud-libro-update works!</p>
+<div class="container">
+  <form [formGroup]="libroForm" (ngSubmit)="actualiza()" class="mat-dialog-content" id="idFormModalidad" >
+    <div class="row">
+      <mat-toolbar color="primary">
+        <span>Actualizar Libro</span>
+      </mat-toolbar>
+    </div>
+    <div  style="margin-top: 30px;">
+      <div class="row ">
+        <mat-form-field class="col-md-6">
+          <mat-label>Título</mat-label>
+          <input [(ngModel)]="libro.titulo" matInput formControlName="titulo">
+          <mat-error *ngIf="libroForm.get('titulo')?.hasError('required')">Campo requerido</mat-error>
+          <mat-error *ngIf="libroForm.get('titulo')?.hasError('minlength')">Mínimo 3 caracteres</mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-md-6">
+          <mat-label>Año de Publicación</mat-label>
+          <input [(ngModel)]="libro.anio" matInput type="number" formControlName="anio">
+          <mat-error *ngIf="libroForm.get('anio')?.hasError('required')">Campo requerido</mat-error>
+          <mat-error *ngIf="libroForm.get('anio')?.hasError('min')">Año mínimo: 1900</mat-error>
+          <mat-error *ngIf="libroForm.get('anio')?.hasError('max')">Año máximo: {{ maxYear }}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-md-6">
+          <mat-label>Serie</mat-label>
+          <input [(ngModel)]="libro.serie" matInput formControlName="serie">
+          <mat-error *ngIf="libroForm.get('serie')?.hasError('required')">Campo requerido</mat-error>
+        </mat-form-field>
+        <mat-form-field class="col-md-6">
+          <mat-label>Categoría</mat-label>
+          <mat-select [(ngModel)]="libro.categoriaLibro!.idDataCatalogo" formControlName="categoriaLibro">
+            <mat-option value="-1">[Seleccione]</mat-option>
+            <mat-option *ngFor="let c of lstCategorias" [value]="c.idDataCatalogo">
+              {{ c.descripcion }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="libroForm.get('categoriaLibro')?.hasError('required')">Campo requerido</mat-error>
+          <mat-error *ngIf="libroForm.get('categoriaLibro')?.hasError('min')">Debes seleccionar algo</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-md-6">
+          <mat-label>Tipo</mat-label>
+          <mat-select [(ngModel)]="libro.tipoLibro!.idDataCatalogo" formControlName="tipoLibro">
+            <mat-option value="-1">[Seleccione]</mat-option>
+            <mat-option *ngFor="let t of lstTipos" [value]="t.idDataCatalogo">
+              {{ t.descripcion }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="libroForm.get('tipoLibro')?.hasError('required')">Campo requerido</mat-error>
+          <mat-error *ngIf="libroForm.get('tipoLibro')?.hasError('min')">Debes seleccionar algo</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 text-right">
+        <button mat-raised-button type="submit" color="primary" [disabled]="!isFormValid()">
+          Registrar
+        </button>
+      </div>
+      <div class="col-md-6">
+        <button mat-raised-button type="button"   (click)="cancelar()">
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

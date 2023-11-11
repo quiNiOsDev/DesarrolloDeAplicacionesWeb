@@ -7,16 +7,37 @@ import { Libro } from '../models/libro.model';
 const baseUrlLibro = AppSettings.API_ENDPOINT + '/libro';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
+
 export class LibroService {
 
   constructor(private http: HttpClient) {
-    //console.log('baseUrlLibro:', baseUrlLibro);
+
   }
 
-  registrar(data:Libro): Observable<any> {
+  /* PC-02 */
+  consultaPorNombre(filtro: string): Observable<Libro[]> {
+    return this.http.get<Libro[]>(
+      baseUrlLibro + '/listaLibroPorTituloLike/' + filtro
+    )
+  }
+
+  inserta(obj: Libro): Observable<any> {
+    return this.http.post(baseUrlLibro + '/registraLibro', obj);
+  }
+
+  actualiza(obj: Libro): Observable<any> {
+    return this.http.put(baseUrlLibro + '/actualizaLibro', obj);
+  }
+
+  elimina(idLibro: number): Observable<any> {
+    return this.http.delete(baseUrlLibro + '/eliminaLibro/' + idLibro);
+  }
+
+  /* PC-01 */
+  registrar(data: Libro): Observable<any> {
     return this.http.post(baseUrlLibro, data);
   }
-
+  
 }
