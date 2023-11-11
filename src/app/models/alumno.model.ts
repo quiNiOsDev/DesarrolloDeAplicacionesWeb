@@ -11,7 +11,7 @@ export class Alumno {
     dni?:string;
     correo?:string;
     fechaNacimiento?:String;
-    
+    estado?:number;
     pais?:Pais;
     modalidad?:DataCatalogo;
     usuarioRegistro?:Usuario;
