@@ -1,1 +1,112 @@
-<p>crud-autor-add works!</p>
+<div class="container">
+    <form  class="mat-dialog-content"  id="idFormModalidad" [formGroup]="formsRegistra" >
+      <div class="row">
+            <mat-toolbar color="primary" >    
+              <span>Registra Autor</span>    
+            </mat-toolbar>  
+      </div>
+      <div  class="row"  style="margin-top: 3%">
+                <mat-form-field class="col-md-8">
+                    <mat-label>Nombre</mat-label>
+                    <input  matInput  [(ngModel)]="autor.nombres"  name="nombres" 
+                            formControlName="validaNombre" maxlength="30">   
+                    <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaNombre.touched">
+                        <span *ngIf="formsRegistra.controls.validaNombre.hasError('required')">
+                               El nombre es requerido 
+                        </span>
+                        <span *ngIf="formsRegistra.controls.validaNombre.hasError('pattern')">
+                               El nombre es de 3 a 30 caracteres 
+                        </span>
+                    </mat-hint> 
+                </mat-form-field>
+                <mat-form-field class="col-md-8">
+                    <mat-label>Apellidos</mat-label>
+                    <input  matInput  [(ngModel)]="autor.apellidos"  name="apellidos" 
+                            formControlName="validaApellido" maxlength="30">   
+                    <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaApellido.touched">
+                        <span *ngIf="formsRegistra.controls.validaApellido.hasError('required')">
+                               El apellido es requerido 
+                        </span>
+                        <span *ngIf="formsRegistra.controls.validaApellido.hasError('pattern')">
+                               El apellido es de 3 a 30 caracteres 
+                        </span>
+                    </mat-hint> 
+                </mat-form-field>
+                <mat-form-field class="col-md-4">
+                    <mat-label>Telefono</mat-label>
+                    <input  matInput  [(ngModel)]="autor.telefono"  name="telefono"
+                            formControlName="validaTelefono" maxlength="30">   
+                    <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaTelefono.touched">
+                        <span *ngIf="formsRegistra.controls.validaTelefono.hasError('required')">
+                               El Telefono es requerido 
+                        </span>
+                        <span *ngIf="formsRegistra.controls.validaTelefono.hasError('pattern')">
+                               El Telefono es de 9 caracteres 
+                        </span>
+                    </mat-hint> 
+                </mat-form-field>
+
+                <mat-form-field class="col-md-4">
+                    <mat-label>FechaNacimiento</mat-label>
+                    <input  matInput  [(ngModel)]="autor.fechaNacimiento"  name="fechaNacimiento" 
+                            formControlName="validaFechaNacimiento" type="date"  >   
+                    <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaFechaNacimiento.touched">
+                        <span *ngIf="formsRegistra.controls.validaFechaNacimiento.hasError('required')">
+                               La Fecha es requerido 
+                        </span>
+                    </mat-hint> 
+                </mat-form-field>
+
+                <mat-form-field class="col-md-4">
+                <mat-label>Pais</mat-label>
+                <mat-select  [(ngModel)]="autor.pais!.idPais"  
+                     formControlName="validaPais" >
+                    <mat-option value="-1"> [Seleccione] </mat-option>
+                    <mat-option *ngFor="let x of lstPais"  [value]="x.idPais">
+                                    {{x.nombre}}
+                    </mat-option> 
+                </mat-select>
+                <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaPais.touched">
+                    <span *ngIf="formsRegistra.controls.validaPais.hasError('min')">
+                           El Pais es requerido
+                    </span>
+                </mat-hint>  
+                </mat-form-field> 
+
+                <mat-form-field class="col-md-4">
+                    <mat-label>Grado</mat-label>
+                    <mat-select  [(ngModel)]="autor.grado!.idDataCatalogo"  
+                         formControlName="validaGrado" >
+                        <mat-option value="-1"> [Seleccione] </mat-option>
+                        <mat-option *ngFor="let x of lstGrado"  [value]="x.idDataCatalogo">
+                                        {{x.descripcion}}
+                        </mat-option> 
+                    </mat-select>
+                    <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaGrado.touched">
+                        <span *ngIf="formsRegistra.controls.validaGrado.hasError('min')">
+                               El Grado es requerido
+                        </span>
+                    </mat-hint>  
+                </mat-form-field> 
+    
+
+        </div>
+
+
+        <div  mat-dialog-actions>
+                <button mat-raised-button 
+                        type="submit" 
+                        (click) = "registra()"
+                        color="primary" 
+                        [disabled]="formsRegistra.invalid"
+                        [mat-dialog-close]="1">
+                        Registra
+                </button>
+                <button mat-button 
+                        color="primary">
+                        Salir
+                </button>
+        </div>
+
+      </form>
+  </div>

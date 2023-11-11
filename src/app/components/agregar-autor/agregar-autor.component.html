@@ -1,4 +1,98 @@
 <app-menu></app-menu>
-<div style="padding: 2%">
-        <p>agregar-autor works!</p>
-</div>
+<div class="container">
+    <form  class="mat-dialog-content"  id="idFormModalidad" [formGroup]="formsRegistra" >
+
+                <div class="row">
+                        <mat-toolbar color="primary" >    
+                        <span>Registra Autor</span>    
+                        </mat-toolbar>  
+                </div>
+                
+                <div  class="row"  style="margin-top: 3%">
+                            <mat-form-field class="col-md-4">
+                                <mat-label>Nombres</mat-label>
+                                <input  matInput [(ngModel)] ="autor.nombres"  formControlName="validaNombre" maxlength="30">
+                                <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaNombre.touched">
+                                    <span *ngIf="formsRegistra.controls.validaNombre.hasError('required')">
+                                           El nombre es requerido 
+                                    </span>
+                                    <span *ngIf="formsRegistra.controls.validaNombre.hasError('pattern')">
+                                           El nombre es de 3 a 30 caracteres 
+                                    </span>
+                                </mat-hint> 
+                            </mat-form-field>
+                            
+                            <mat-form-field class="col-md-4">
+                                <mat-label>Apellidos</mat-label>
+                                <input  matInput [(ngModel)] ="autor.apellidos" formControlName="validaApellido" maxlength="30" >
+                                <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaApellido.touched">
+                                    <span *ngIf="formsRegistra.controls.validaApellido.hasError('required')">
+                                           El apellido es requerido 
+                                    </span>
+                                    <span *ngIf="formsRegistra.controls.validaApellido.hasError('pattern')">
+                                           El apellido es de 3 a 30 caracteres 
+                                    </span>
+                                </mat-hint> 
+                            </mat-form-field>
+
+                            <mat-form-field class="col-md-4">
+                                <mat-label>Nacimiento</mat-label>
+                                <input type="date" matInput [(ngModel)] ="autor.fechaNacimiento" formControlName="validaFechaNacimiento">
+                                <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaFechaNacimiento.touched">
+                                    <span *ngIf="formsRegistra.controls.validaFechaNacimiento.hasError('required')">
+                                           La Fecha es requerido 
+                                    </span>
+                                </mat-hint> 
+                            </mat-form-field>
+
+                            <mat-form-field class="col-md-4">
+                                <mat-label>telefono</mat-label>
+                                <input  matInput [(ngModel)] ="autor.telefono" formControlName="validaTelefono" >
+                                <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaTelefono.touched">
+                                    <span *ngIf="formsRegistra.controls.validaTelefono.hasError('required')">
+                                           El Telefono es requerido 
+                                    </span>
+                                    <span *ngIf="formsRegistra.controls.validaTelefono.hasError('pattern')">
+                                            9 numeros como maximo
+                                    </span>
+                                </mat-hint> 
+                            </mat-form-field>
+
+                            <mat-form-field class="col-md-4">
+                                <mat-label>País</mat-label>
+                                <mat-select [(ngModel)]="autor.pais!.idPais" formControlName="validaPais">
+                                    <mat-option value="-1"> [Seleccione] </mat-option>
+                                    <mat-option  *ngFor="let x of lstPais" [value]="x.idPais">
+                                        {{x.nombre}}
+                                    </mat-option>   
+                                </mat-select> 
+                                <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaPais.touched">
+                                    <span *ngIf="formsRegistra.controls.validaPais.hasError('min')">
+                                           El Pais es requerido
+                                    </span>
+                                </mat-hint>  
+                            </mat-form-field> 
+
+                            <mat-form-field class="col-md-4">
+                                <mat-label>Grado</mat-label>
+                                <mat-select [(ngModel)]="autor.grado!.idDataCatalogo" formControlName="validaGrado">
+                                    <mat-option value="-1"> [Seleccione] </mat-option>
+                                    <mat-option  *ngFor="let x of lstGrado" [value]="x.idDataCatalogo">
+                                        {{x.descripcion}}
+                                    </mat-option>   
+                                </mat-select> 
+                                <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaGrado.touched">
+                                    <span *ngIf="formsRegistra.controls.validaGrado.hasError('min')">
+                                           El Grado es requerido
+                                    </span>
+                                </mat-hint> 
+                            </mat-form-field> 
+                </div>
+                <div  class="row" >
+                    <button mat-raised-button type="submit" color="primary" (click)="registra()">Registra</button>
+                </div>
+ 
+    </form>
+  </div>
+  
+

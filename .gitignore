@@ -145,3 +145,6 @@ cmake_install.cmake
 
 # Archivos de caché de PyCharm
 .idea/
+
+# Archivos de configuración de Angular
+angular.json
