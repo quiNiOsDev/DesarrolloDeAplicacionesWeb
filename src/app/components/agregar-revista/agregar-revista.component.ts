@@ -48,10 +48,10 @@ export class AgregarRevistaComponent {
     private utilService: UtilService,
     private tokenService: TokenService,
       private formBuilder: FormBuilder){
-      utilService.listaPais().subscribe(
+      this.utilService.listaPais().subscribe(
       x =>   this.lstPais=x
     )
-    utilService.listaTipoLibroRevista().subscribe(
+    this.utilService.listaTipoLibroRevista().subscribe(
       x =>   this.lstTipoRevista=x
     )
     this.objUsuario.idUsuario = tokenService.getUserId();
@@ -64,7 +64,20 @@ registra(){
   this.revista.usuarioRegistro = this.objUsuario;
   console.log('Revista después de actualizar usuario:', this.revista);
   this.revistaService.registrar(this.revista).subscribe(
-    (response: any)=>{
+    x => {
+      Swal.fire('Mensaje', x.mensaje, 'info');
+    }
+  );
+}
+
+
+}
+
+
+
+
+
+   /* (response: any)=>{
       Swal.fire({
         icon: 'info',
         title: 'Resultado del Registro',
@@ -74,4 +87,4 @@ registra(){
   );
   }
 
-}
+}*/

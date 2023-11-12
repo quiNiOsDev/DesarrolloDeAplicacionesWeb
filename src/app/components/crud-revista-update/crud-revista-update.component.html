@@ -35,7 +35,7 @@
                 </mat-form-field>
 
                 <mat-form-field class="col-md-4">
-                    <mat-label>FechaCreacion</mat-label>
+                    <mat-label>Fecha de creación</mat-label>
                     <input  matInput  [(ngModel)]="revista.fechaCreacion"  name="fechaCreacion"
                             formControlName="validaFechaCreacion" type="date"  >   
                     <mat-hint style="color: red" *ngIf="formsActualiza.controls.validaFechaCreacion.touched">
@@ -45,7 +45,7 @@
                     </mat-hint> 
                 </mat-form-field>
                 <mat-form-field class="col-md-4">
-                <mat-label>Pais</mat-label>
+                <mat-label>País</mat-label>
                 <mat-select  [(ngModel)]="revista.pais!.idPais"  
                      formControlName="validaPais" >
                     <mat-option value="-1"> [Seleccione] </mat-option>
@@ -61,7 +61,7 @@
                 </mat-form-field> 
 
                 <mat-form-field class="col-md-4">
-                    <mat-label>Grado</mat-label>
+                    <mat-label>Tipo de revista</mat-label>
                     <mat-select  [(ngModel)]="revista.tipoRevista!.idDataCatalogo"  
                          formControlName="validaTipoRevista" >
                         <mat-option value="-1"> [Seleccione] </mat-option>

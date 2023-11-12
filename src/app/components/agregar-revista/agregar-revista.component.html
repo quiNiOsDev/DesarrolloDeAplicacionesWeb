@@ -1,5 +1,112 @@
 <app-menu></app-menu>
 <div class="container">
+    <form  class="mat-dialog-content"  id="idFormModalidad" [formGroup]="formsRegistra" >
+      <div class="row">
+            <mat-toolbar color="primary" >    
+              <span>Registra Revista</span>    
+            </mat-toolbar>  
+      </div>
+      <div  class="row"  style="margin-top: 3%">
+                <mat-form-field class="col-md-8">
+                    <mat-label>Nombre</mat-label>
+                    <input  matInput  [(ngModel)]="revista.nombre"  name="nombre" 
+                            formControlName="validaNombre" maxlength="100">   
+                    <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaNombre.touched">
+                        <span *ngIf="formsRegistra.controls.validaNombre.hasError('required')">
+                               El nombre es requerido 
+                        </span>
+                        <span *ngIf="formsRegistra.controls.validaNombre.hasError('pattern')">
+                               El nombre es de 1 a 100 caracteres 
+                        </span>
+                    </mat-hint> 
+                </mat-form-field>
+                <mat-form-field class="col-md-8">
+                    <mat-label>Frecuencia</mat-label>
+                    <input  matInput  [(ngModel)]="revista.frecuencia"  name="frecuencia" 
+                            formControlName="validaFrecuencia" maxlength="100">   
+                    <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaFrecuencia.touched">
+                        <span *ngIf="formsRegistra.controls.validaFrecuencia.hasError('required')">
+                               La frecuencia es requerido 
+                        </span>
+                        <span *ngIf="formsRegistra.controls.validaFrecuencia.hasError('pattern')">
+                               La frecuencia es de 1 a 100 caracteres 
+                        </span>
+                    </mat-hint> 
+                </mat-form-field>
+                
+
+                <mat-form-field class="col-md-4">
+                    <mat-label>Fecha de creación</mat-label>
+                    <input  matInput  [(ngModel)]="revista.fechaCreacion"  name="fechaCreacion"
+                            formControlName="validaFechaCreacion" type="date"  >   
+                    <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaFechaCreacion.touched">
+                        <span *ngIf="formsRegistra.controls.validaFechaCreacion.hasError('required')">
+                               La Fecha de creacioón es requerida
+                        </span>
+                    </mat-hint> 
+                </mat-form-field>
+
+                <mat-form-field class="col-md-4">
+                <mat-label>País</mat-label>
+                <mat-select  [(ngModel)]="revista.pais!.idPais"  
+                     formControlName="validaPais" >
+                    <mat-option value="-1"> [Seleccione] </mat-option>
+                    <mat-option *ngFor="let x of lstPais"  [value]="x.idPais">
+                                    {{x.nombre}}
+                    </mat-option> 
+                </mat-select>
+                <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaPais.touched">
+                    <span *ngIf="formsRegistra.controls.validaPais.hasError('min')">
+                           El Pais es requerido
+                    </span>
+                </mat-hint>  
+                </mat-form-field> 
+
+                <mat-form-field class="col-md-4">
+                    <mat-label>Tipo de revista</mat-label>
+                    <mat-select  [(ngModel)]="revista.tipoRevista!.idDataCatalogo"  
+                         formControlName="validaTipoRevista" >
+                        <mat-option value="-1"> [Seleccione] </mat-option>
+                        <mat-option *ngFor="let x of lstTipoRevista"  [value]="x.idDataCatalogo">
+                                        {{x.descripcion}}
+                        </mat-option> 
+                    </mat-select>
+                    <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaTipoRevista.touched">
+                        <span *ngIf="formsRegistra.controls.validaTipoRevista.hasError('min')">
+                               El tipo de revista es requerido
+                        </span>
+                    </mat-hint>  
+                </mat-form-field> 
+    
+
+        </div>
+
+
+        <div  mat-dialog-actions>
+                <button mat-raised-button 
+                        type="submit" 
+                        (click) = "registra()"
+                        color="primary" 
+                        [disabled]="formsRegistra.invalid"
+                        [mat-dialog-close]="1">
+                        Registra
+                </button>
+ 
+        </div>
+
+      </form>
+  </div>
+
+
+
+
+
+
+
+
+
+<!--<app-menu></app-menu>
+<div class="container">
                 <div class="row">
                         <mat-toolbar color="primary" >    
                         <span>Registra Revista</span>    
@@ -17,7 +124,7 @@
                         </mat-form-field>
 
                         <mat-form-field class="col-md-4">
-                            <mat-label>Fecha de creacion</mat-label>
+                            <mat-label>Fecha de creación</mat-label>
                             <input type="date" matInput [(ngModel)] ="revista.fechaCreacion" >
                         </mat-form-field>
 
@@ -33,7 +140,7 @@
                         </mat-form-field> 
 
                         <mat-form-field class="col-md-4">
-                            <mat-label>Tipo</mat-label>
+                            <mat-label>Tipo de revista</mat-label>
                             <mat-select [(ngModel)]="revista.tipoRevista!.idDataCatalogo">
                                 <mat-option value="-1"> [Seleccione] </mat-option>
                                 <mat-option  *ngFor="let x of lstTipoRevista" [value]="x.idDataCatalogo">
@@ -47,5 +154,5 @@
             </div>
         </div>
 
-
+    -->
 
