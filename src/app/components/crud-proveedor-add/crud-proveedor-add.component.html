@@ -1,1 +1,154 @@
-<p>crud-proveedor-add works!</p>
+<div class="container">
+  <form
+    class="mat-dialog-content"
+    id="idFormModalidad"
+    [formGroup]="fgProveedor"
+  >
+    <div class="row">
+      <mat-toolbar color="primary">
+        <span>Registra Proveedor</span>
+      </mat-toolbar>
+    </div>
+    <div class="row" style="margin-top: 3%">
+      <mat-form-field class="col-md-8">
+        <mat-label>Razón Social</mat-label>
+        <input
+          formControlName="razonsocial"
+          matInput
+          maxlength="61"
+        />
+        <mat-hint
+          style="color: red"
+          *ngIf="fgProveedor.controls.razonsocial.touched"
+        >
+          <span *ngIf="fgProveedor.controls.razonsocial.hasError('required')">
+            La razón social es requerida
+          </span>
+          <span *ngIf="fgProveedor.controls.razonsocial.hasError('pattern')">
+            La razón social es de 1 a 60 caracteres
+          </span>
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="col-md-4">
+        <mat-label>RUC</mat-label>
+        <input formControlName="ruc" matInput />
+        <mat-hint style="color: red" *ngIf="fgProveedor.controls.ruc.touched">
+          <span *ngIf="fgProveedor.controls.razonsocial.hasError('required')">
+            El RUC es requerido
+          </span>
+          <span *ngIf="fgProveedor.controls.ruc.hasError('pattern')">
+            El RUC debe tener 11 digitos
+          </span>
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="col-md-12">
+        <mat-label>Dirección</mat-label>
+        <input formControlName="direccion" matInput maxlength="101" />
+        <mat-hint
+          style="color: red"
+          *ngIf="fgProveedor.controls.direccion.touched"
+        >
+          <span *ngIf="fgProveedor.controls.direccion.hasError('pattern')">
+            La dirección es de 1 a 100 caracteres
+          </span>
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="col-md-4">
+        <mat-label>Celular</mat-label>
+        <input formControlName="celular" matInput />
+        <mat-hint
+          style="color: red"
+          *ngIf="fgProveedor.controls.celular.touched"
+        >
+          <span *ngIf="fgProveedor.controls.celular.hasError('required')">
+            El celular es requerido
+          </span>
+          <span *ngIf="fgProveedor.controls.celular.hasError('pattern')">
+            El celular debe tener 9 digitos
+          </span>
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="col-md-8">
+        <mat-label>Contacto</mat-label>
+        <input formControlName="contacto" matInput maxlength="31" />
+        <mat-hint
+          style="color: red"
+          *ngIf="fgProveedor.controls.contacto.touched"
+        >
+          <span *ngIf="fgProveedor.controls.contacto.hasError('required')">
+            El contacto es requerido
+          </span>
+          <span *ngIf="fgProveedor.controls.contacto.hasError('pattern')">
+            El contacto debe tener 30 digitos
+          </span>
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="col-md-6">
+        <mat-label>País</mat-label>
+        <ng-container formGroupName="pais">
+        <mat-select formControlName="idPais">
+          <mat-option value="-1"> [Seleccione] </mat-option>
+          <mat-option *ngFor="let x of lstPais" [value]="x.idPais">
+            {{ x.nombre }}
+          </mat-option>
+        </mat-select>
+        </ng-container>
+        <mat-hint style="color: red" *ngIf="fgProveedor.controls.pais.touched">
+          <span *ngIf="fgProveedor.controls.pais.controls.idPais.hasError('min')||fgProveedor.controls.pais.controls.idPais.hasError('required')">
+            El país es requerido
+          </span>
+        </mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="col-md-6">
+        <mat-label>Tipo Proveedor</mat-label>
+        <ng-container formGroupName="tipoProveedor">
+        <mat-select formControlName="idDataCatalogo">
+          <mat-option value="-1"> [Seleccione] </mat-option>
+          <mat-option
+            *ngFor="let x of lstDataCatalogo"
+            [value]="x.idDataCatalogo"
+          >
+            {{ x.descripcion }}
+          </mat-option>
+        </mat-select>
+        </ng-container>
+        <mat-hint
+          style="color: red"
+          *ngIf="fgProveedor.controls.tipoProveedor.touched"
+        >
+          <span *ngIf="fgProveedor.controls.tipoProveedor.controls.idDataCatalogo.hasError('min')||fgProveedor.controls.tipoProveedor.controls.idDataCatalogo.hasError('required')">
+            El tipo es requerido
+          </span>
+        </mat-hint>
+      </mat-form-field>
+    </div>
+
+    <button
+      class="col-md-6"
+      mat-raised-button
+      type="submit"
+      color="primary"
+      (click)="registra()"
+      [disabled]="fgProveedor.invalid"
+    >
+      Registra
+    </button>
+    <!-- <div class="row">
+    <button
+      class="col-md-6"
+      mat-raised-button
+      type="submit"
+      color="primary"
+      (click)="registra()"
+    >
+      Registra
+    </button>
+  </div> -->
+  </form>
+</div>

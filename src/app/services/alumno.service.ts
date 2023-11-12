@@ -18,4 +18,21 @@ export class AlumnoService {
     return this.http.post(baseUrlAlumno, data);
   }
 
+  consultaPorNombre(filtro:string):Observable<Alumno[]>{
+    return  this.http.get<Alumno[]>(baseUrlAlumno +"/listaAlumnoPorNombreLike/"+filtro); 
+  }  
+
+inserta(obj:Alumno):Observable<any>{
+    return this.http.post(baseUrlAlumno +"/registraAlumno", obj);
+}
+
+actualiza(obj:Alumno):Observable<any>{
+    return this.http.put(baseUrlAlumno + "/actualizaAlumno", obj);
+}
+
+elimina(idAlumno:number):Observable<any>{
+    return this.http.delete(baseUrlAlumno + "/eliminaAlumno/"+ idAlumno);
+}
+  
+
 }
