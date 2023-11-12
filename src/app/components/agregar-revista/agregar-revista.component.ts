@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { DataCatalogo } from 'src/app/models/dataCatalogo.model';
 import { Pais } from 'src/app/models/pais.model';
 import { Revista } from 'src/app/models/revista.model';
@@ -15,8 +16,18 @@ import Swal from 'sweetalert2';
 })
 export class AgregarRevistaComponent {
 
-  lstTipo: DataCatalogo[] = [];
+  lstTipoRevista: DataCatalogo[] = [];
   lstPais: Pais[] = [];
+
+  formsRegistra = this.formBuilder.group({
+    validaNombre:['', [Validators.required,Validators.pattern('[a-zA-Zá-úÁ-ÚñÑ ]{3,30}')]],
+    validaFrecuencia:['', [Validators.required,Validators.pattern('[a-zA-Zá-úÁ-ÚñÑ ]{3,30}')]],
+    validaFechaCreacion: ['', [Validators.required]],
+    validaPais: ['', Validators.min(1)] , 
+    validaTipoRevista: ['', Validators.min(1)] , 
+
+  });
+
 
   revista: Revista ={
     nombre:"",
@@ -32,12 +43,15 @@ export class AgregarRevistaComponent {
 
   objUsuario: Usuario ={};
 
-  constructor(private revistaService : RevistaService, private utilService: UtilService, private tokenService: TokenService){
-    this.utilService.listaPais().subscribe(
+  constructor(private revistaService : RevistaService, 
+    private utilService: UtilService,
+    private tokenService: TokenService,
+      private formBuilder: FormBuilder){
+      utilService.listaPais().subscribe(
       x =>   this.lstPais=x
     )
-    this.utilService.listaTipoLibroRevista().subscribe(
-      x =>   this.lstTipo=x
+    utilService.listaTipoLibroRevista().subscribe(
+      x =>   this.lstTipoRevista=x
     )
     this.objUsuario.idUsuario = tokenService.getUserId();
 

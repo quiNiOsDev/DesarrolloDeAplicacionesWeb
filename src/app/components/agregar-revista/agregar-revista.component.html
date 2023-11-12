@@ -1,5 +1,4 @@
 <app-menu></app-menu>
-
 <div class="container">
                 <div class="row">
                         <mat-toolbar color="primary" >    
@@ -34,10 +33,10 @@
                         </mat-form-field> 
 
                         <mat-form-field class="col-md-4">
-                            <mat-label>Tipo</mat-label>
+                            <mat-label>Tipo Revista</mat-label>
                             <mat-select [(ngModel)]="revista.tipoRevista!.idDataCatalogo">
                                 <mat-option value="-1"> [Seleccione] </mat-option>
-                                <mat-option  *ngFor="let x of lstTipo" [value]="x.idDataCatalogo">
+                                <mat-option  *ngFor="let x of lstTipoRevista" [value]="x.idDataCatalogo">
                                     {{x.descripcion}}
                                 </mat-option>   
                             </mat-select> 

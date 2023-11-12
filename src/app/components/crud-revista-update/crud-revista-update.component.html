@@ -1,1 +1,97 @@
-<p>crud-revista-update works!</p>
+<div class="container">
+    <form  class="mat-dialog-content"  id="idFormModalidad"  [formGroup]="formsActualiza">
+      <div class="row">
+            <mat-toolbar color="primary" >    
+              <span>Actualiza Revista</span>    
+            </mat-toolbar>  
+      </div>
+      <div  class="row"  style="margin-top: 3%">
+                <mat-form-field class="col-md-8">
+                    <mat-label>Nombre</mat-label>
+                    <input  matInput  [(ngModel)]="revista.nombre"  name="nombre" 
+                        formControlName="validaNombre" maxlength="100">
+                    <mat-hint style="color: red" *ngIf="formsActualiza.controls.validaNombre.touched">
+                        <span *ngIf="formsActualiza.controls.validaNombre.hasError('required')">
+                               El nombre es requerido 
+                        </span>
+                        <span *ngIf="formsActualiza.controls.validaNombre.hasError('pattern')">
+                               El nombre es de 1 a 100 caracteres 
+                        </span>
+                    </mat-hint> 
+                </mat-form-field>
+
+                <mat-form-field class="col-md-8">
+                    <mat-label>Frecuencia</mat-label>
+                    <input  matInput  [(ngModel)]="revista.frecuencia"  name="frecuencia" 
+                            formControlName="validaFrecuencia" maxlength="100">   
+                    <mat-hint style="color: red" *ngIf="formsActualiza.controls.validaFrecuencia">
+                        <span *ngIf="formsActualiza.controls.validaFrecuencia.hasError('required')">
+                               La frecuencia es requerida 
+                        </span>
+                        <span *ngIf="formsActualiza.controls.validaFrecuencia.hasError('pattern')">
+                               La frecuencia es de 1 a 100 caracteres 
+                        </span>
+                    </mat-hint> 
+                </mat-form-field>
+
+                <mat-form-field class="col-md-4">
+                    <mat-label>FechaCreacion</mat-label>
+                    <input  matInput  [(ngModel)]="revista.fechaCreacion"  name="fechaCreacion"
+                            formControlName="validaFechaCreacion" type="date"  >   
+                    <mat-hint style="color: red" *ngIf="formsActualiza.controls.validaFechaCreacion.touched">
+                        <span *ngIf="formsActualiza.controls.validaFechaCreacion.hasError('required')">
+                               La Fecha de creación es requerida 
+                        </span>
+                    </mat-hint> 
+                </mat-form-field>
+                <mat-form-field class="col-md-4">
+                <mat-label>Pais</mat-label>
+                <mat-select  [(ngModel)]="revista.pais!.idPais"  
+                     formControlName="validaPais" >
+                    <mat-option value="-1"> [Seleccione] </mat-option>
+                    <mat-option *ngFor="let x of lstPais"  [value]="x.idPais">
+                                    {{x.nombre}}
+                    </mat-option> 
+                </mat-select>
+                <mat-hint style="color: red" *ngIf="formsActualiza.controls.validaPais.touched">
+                    <span *ngIf="formsActualiza.controls.validaPais.hasError('min')">
+                           El Pais es requerido
+                    </span>
+                </mat-hint>  
+                </mat-form-field> 
+
+                <mat-form-field class="col-md-4">
+                    <mat-label>Grado</mat-label>
+                    <mat-select  [(ngModel)]="revista.tipoRevista!.idDataCatalogo"  
+                         formControlName="validaTipoRevista" >
+                        <mat-option value="-1"> [Seleccione] </mat-option>
+                        <mat-option *ngFor="let x of lstTipoRevista"  [value]="x.idDataCatalogo">
+                                        {{x.descripcion}}
+                        </mat-option> 
+                    </mat-select>
+                    <mat-hint style="color: red" *ngIf="formsActualiza.controls.validaTipoRevista.touched">
+                        <span *ngIf="formsActualiza.controls.validaTipoRevista.hasError('min')">
+                               El Grado es requerido
+                        </span>
+                    </mat-hint>  
+                </mat-form-field> 
+               
+        </div>
+
+        <div  mat-dialog-actions>
+                <button mat-raised-button 
+                        type="submit" 
+                        (click) = "actualiza()"
+                        color="primary" 
+                        [disabled]="formsActualiza.invalid"
+                        [mat-dialog-close]="1">
+                        Actualiza
+                </button>
+                <button mat-button 
+                        color="primary">
+                        Salir
+                </button>
+        </div>
+
+      </form>
+  </div>
