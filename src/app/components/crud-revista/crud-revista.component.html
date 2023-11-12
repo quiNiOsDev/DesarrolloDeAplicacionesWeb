@@ -1,4 +1,75 @@
 <app-menu></app-menu>
-<div style="padding: 2%">
-    <p>crud-revista works!</p>
-</div>
+<div class="container mat-elevation-z8" >
+   
+        <div class="row">
+            <mat-toolbar color="primary" >    
+            <span>CRUD Revista</span>    
+            </mat-toolbar>  
+        </div>
+
+        <div class="row" style="margin-top: 3%">
+            <mat-form-field class="col-md-4">
+                <mat-label>Nombre</mat-label>
+                <input  matInput [(ngModel)] ="filtro" >
+            </mat-form-field>
+
+           <button mat-raised-button  color="accent" type="button" (click)="consultaRevista()"  class="btn btn-primary btn-sm mr-2" id="id_btn_filtrar"  style="width: 150px">Buscar y Filtrar</button>
+           <button mat-raised-button color="primary" type="button"  (click)="openAddDialog()" class='btn btn-primary btn-sm' style="width: 150px">Registrar</button>
+        </div>
+
+        <div class="row" style="margin-top: 3%">
+            <mat-table  #table  class="mat-cell" [dataSource]="dataSource" >
+                <ng-container matColumnDef="idRevista">
+                  <mat-header-cell  mat-header-cell *matHeaderCellDef >Id</mat-header-cell>
+                  <mat-cell *matCellDef="let aux" >{{ aux.idRevista  }}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="nombre">
+                  <mat-header-cell  mat-header-cell *matHeaderCellDef >Nombre</mat-header-cell>
+                  <mat-cell *matCellDef="let aux" >{{ aux.nombre}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="frecuencia">
+                  <mat-header-cell  mat-header-cell *matHeaderCellDef >Frecuencia</mat-header-cell>
+                  <mat-cell *matCellDef="let aux" >{{ aux.frecuencia }}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="fechaCreacion">
+                  <mat-header-cell  mat-header-cell *matHeaderCellDef >FechaCreacion</mat-header-cell>
+                  <mat-cell *matCellDef="let aux" >{{ aux.fechaCreacion }}</mat-cell>
+                </ng-container>
+                 <ng-container matColumnDef="pais">
+                        <mat-header-cell  mat-header-cell *matHeaderCellDef >Pais</mat-header-cell>
+                        <mat-cell *matCellDef="let aux" >{{ aux.pais.nombre }}</mat-cell>
+                 </ng-container>
+                 <ng-container matColumnDef="tipoRevista">
+                        <mat-header-cell  mat-header-cell *matHeaderCellDef >TipoRevista</mat-header-cell>
+                        <mat-cell *matCellDef="let aux" >{{ aux.tipoRevista.descripcion}}</mat-cell>
+                 </ng-container>
+
+
+                <ng-container matColumnDef="acciones">
+                    <mat-header-cell  mat-header-cell *matHeaderCellDef >&nbsp;</mat-header-cell>
+
+                    <mat-cell *matCellDef="let aux; let i=index;">
+                        
+                       <button class="btn p-0 m-0" mat-icon-button color="primary" (click)="openUpdateDialog(aux)">
+                            <mat-icon aria-label="Edit"></mat-icon><i class="fas fa-pencil-alt"></i>
+                       </button>
+
+                       <button class="btn p-0 m-0" mat-icon-button color="primary"(click)="elimina(aux)">
+                                <mat-icon aria-label="Delete"></mat-icon><i class="fas fa-trash"></i>
+                       </button>
+
+                    </mat-cell>
+               </ng-container>
+
+     
+
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let aux; columns: displayedColumns"></mat-row>
+          </mat-table>
+          <mat-paginator [pageSizeOptions]="[10,20,30]" showFirstLastButtons></mat-paginator>
+
+
+        </div>
+
+
+    </div>

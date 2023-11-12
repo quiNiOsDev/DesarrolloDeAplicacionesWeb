@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { AutorService } from 'src/app/services/autor.service';
 import { CrudRevistaAddComponent } from '../crud-revista-add/crud-revista-add.component';
 import { Revista } from 'src/app/models/revista.model';
 import { CrudRevistaUpdateComponent } from '../crud-revista-update/crud-revista-update.component';
@@ -16,13 +15,16 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./crud-revista.component.css']
 })
 export class CrudRevistaComponent {
+
   filtro: string ="";
+  
   pais: string[]=[];
-  tipo: string[]=[];
+  tipoRevista: string[]=[];
+  
   dataSource:any;
 
   @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
-  displayedColumns =["idRevista","nombre","frecuencia", "fechaCreacion","pais","tipo","acciones"]; 
+  displayedColumns =["idRevista","nombre","frecuencia", "fechaCreacion","pais","tipoRevista","acciones"]; 
 
   constructor(
     private formBuilder: FormBuilder,
@@ -59,14 +61,14 @@ export class CrudRevistaComponent {
 
   elimina(obj:Revista){
     Swal.fire({
-        title: '¿Desea eliminar?',
-        text: "Los cambios no se van a revertir",
+        title: '¿Estás seguro que deseas eliminar?',
+        text: "Los cambios son irreversibles",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí, elimina',
-        cancelButtonText: 'No, cancelar'
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'No, cancela'
     }).then((result) =>{
       if(result.isConfirmed){
         this.revistaService.elimina(obj.idRevista || 0).subscribe(
