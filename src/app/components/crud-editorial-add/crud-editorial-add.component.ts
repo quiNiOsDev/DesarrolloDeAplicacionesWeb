@@ -21,8 +21,9 @@ export class CrudEditorialAddComponent {
     ruc: "",
     pais: {
       idPais: -1
-    }
-  }
+    },
+    fechaCreacion: new Date()
+  };
   objUsuario: Usuario = {};
 
   constructor(
@@ -33,11 +34,16 @@ export class CrudEditorialAddComponent {
   ) {
     utilService.listaPais().subscribe(
       x => this.lstPais = x
-    )
+    );
     this.objUsuario.idUsuario = tokenService.getUserId();
   }
 
   registra() {
+    // Validaciones
+    if (!this.validateRuc() || !this.validateRazonSocial()) {
+      return;
+    }
+
     this.editorial.usuarioActualiza = this.objUsuario;
     this.editorial.usuarioRegistro = this.objUsuario;
     this.editorialService.registrar(this.editorial).subscribe(
@@ -46,7 +52,6 @@ export class CrudEditorialAddComponent {
           Swal.fire({
             icon: 'success',
             title: 'Registro Exitoso',
-            //text: response.mensaje,
             text: 'Los cambios han sido guardados con éxito.',
           }).then((result) => {
             if (result.value) {
@@ -63,12 +68,63 @@ export class CrudEditorialAddComponent {
       },
       (error) => {
         console.error('Error al registrar editorial:', error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Error en el Registro',
-          text: 'Hubo un error en el servidor. Por favor, inténtalo de nuevo más tarde.',
-        });
+
+        if (error.status === 400) {
+          console.log('Error completo:', error);
+
+          if (error.error && error.error.mensaje) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error en el Registro',
+              text: error.error.mensaje,
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error en el Registro',
+              text: 'Hubo un error en el servidor. Por favor, inténtalo de nuevo más tarde.',
+            });
+          }
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error en el Registro',
+            text: 'Hubo un error en el servidor. Por favor, inténtalo de nuevo más tarde.',
+          });
+        }
       }
     );
+  }
+
+
+
+  // Validar RUC
+  validateRuc(): boolean {
+    const rucRegex = /^[0-9]{11}$/;
+
+    if (!this.editorial.ruc || !rucRegex.test(this.editorial.ruc)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'El RUC debe contener 11 números.',
+      });
+      return false;
+    }
+    return true;
+  }
+
+  // Validar Razón Social
+  validateRazonSocial(): boolean {
+    const razonSocialRegex = /^[a-zA-Z0-9 ]*$/;
+
+    if (!this.editorial.razonSocial || !razonSocialRegex.test(this.editorial.razonSocial)) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'La Razón Social solo debe contener letras y números, sin caracteres especiales ni tildes.',
+      });
+      return false;
+    }
+    return true;
   }
 }

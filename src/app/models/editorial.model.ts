@@ -7,6 +7,7 @@ export class Editorial {
   direccion?: string;
   ruc?: string;
   fechaCreacion?: Date;
+  fechaActualizacion?: Date;
   pais!: Pais;
   estado?: number;
   usuarioRegistro?:Usuario;
