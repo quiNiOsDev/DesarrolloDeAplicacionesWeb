@@ -20,8 +20,8 @@ export class AgregarRevistaComponent {
   lstPais: Pais[] = [];
 
   formsRegistra = this.formBuilder.group({
-    validaNombre:['', [Validators.required,Validators.pattern('[a-zA-Zá-úÁ-ÚñÑ ]{3,30}')]],
-    validaFrecuencia:['', [Validators.required,Validators.pattern('[a-zA-Zá-úÁ-ÚñÑ ]{3,30}')]],
+    validaNombre:['', [Validators.required,Validators.pattern('^[a-zA-Z0-9á-úÁ-ÚñÑ ]{1,100}')]],
+    validaFrecuencia:['', [Validators.required,Validators.pattern('^[a-zA-Z0-9á-úÁ-ÚñÑ ]{1,100}')]],
     validaFechaCreacion: ['', [Validators.required]],
     validaPais: ['', Validators.min(1)] , 
     validaTipoRevista: ['', Validators.min(1)] , 
@@ -43,14 +43,15 @@ export class AgregarRevistaComponent {
 
   objUsuario: Usuario ={};
 
-  constructor(private revistaService : RevistaService, 
+  constructor(
+    private revistaService : RevistaService, 
     private utilService: UtilService,
     private tokenService: TokenService,
       private formBuilder: FormBuilder){
-      utilService.listaPais().subscribe(
+      this.utilService.listaPais().subscribe(
       x =>   this.lstPais=x
     )
-    utilService.listaTipoLibroRevista().subscribe(
+    this.utilService.listaTipoLibroRevista().subscribe(
       x =>   this.lstTipoRevista=x
     )
     this.objUsuario.idUsuario = tokenService.getUserId();
@@ -63,7 +64,20 @@ registra(){
   this.revista.usuarioRegistro = this.objUsuario;
   console.log('Revista después de actualizar usuario:', this.revista);
   this.revistaService.registrar(this.revista).subscribe(
-    (response: any)=>{
+    x => {
+      Swal.fire('Mensaje', x.mensaje, 'info');
+    }
+  );
+}
+
+
+}
+
+
+
+
+
+   /* (response: any)=>{
       Swal.fire({
         icon: 'info',
         title: 'Resultado del Registro',
@@ -73,4 +87,4 @@ registra(){
   );
   }
 
-}
+}*/

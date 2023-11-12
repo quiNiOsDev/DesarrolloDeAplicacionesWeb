@@ -19,8 +19,8 @@ export class CrudRevistaAddComponent {
   lstPais: Pais[] = [];
 
   formsRegistra = this.formBuilder.group({
-    validaNombre:['', [Validators.required,Validators.pattern('[a-zA-Zá-úÁ-ÚñÑ ]{3,30}')]],
-    validaFrecuencia:['', [Validators.required,Validators.pattern('[a-zA-Zá-úÁ-ÚñÑ ]{3,30}')]],
+    validaNombre:['', [Validators.required,Validators.pattern('^[a-zA-Z0-9á-úÁ-ÚñÑ ]{1,100}')]],
+    validaFrecuencia:['', [Validators.required,Validators.pattern('^[a-zA-Z0-9á-úÁ-ÚñÑ ]{1,100}')]],
     validaFechaCreacion: ['', [Validators.required]],
     validaPais: ['', Validators.min(1)] , 
     validaTipoRevista: ['', Validators.min(1)] , 
