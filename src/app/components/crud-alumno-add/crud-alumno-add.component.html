@@ -95,12 +95,13 @@
                                             {{x.nombre}}
                                     </mat-option>
                             </mat-select>
+                            <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaPais.touched">
+                                <span *ngIf="formsRegistra.controls.validaPais.hasError('min')">
+                                        El Pais es requerido
+                                </span>
+                            </mat-hint>
                     </mat-form-field>
-                    <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaPais.touched">
-                            <span *ngIf="formsRegistra.controls.validaPais.hasError('min')">
-                                    El Pais es requerido
-                            </span>
-                    </mat-hint>
+                 
                     <mat-form-field class="col-md-4">
                             <mat-label>Modalidad</mat-label>
                             <mat-select [(ngModel)]="alumno.modalidad!.idDataCatalogo" name="modalidad"
@@ -110,12 +111,13 @@
                                             {{x.descripcion}}
                                     </mat-option>
                             </mat-select>
+                            <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaPais.touched">
+                                <span *ngIf="formsRegistra.controls.validaPais.hasError('min')">
+                                        La modalidad es requerido
+                                </span>
+                        </mat-hint>
                     </mat-form-field>
-                    <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaPais.touched">
-                            <span *ngIf="formsRegistra.controls.validaPais.hasError('min')">
-                                    La modalidad es requerido
-                            </span>
-                    </mat-hint>
+                   
             </div>
 
             <div mat-dialog-actions>

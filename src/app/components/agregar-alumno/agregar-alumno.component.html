@@ -24,7 +24,7 @@
                         <mat-form-field class="col-md-4">
                                 <mat-label>Apellidos</mat-label>
                                 <input matInput name="apellidos" [(ngModel)]="alumno.apellidos"
-                                        formControlName="validaNombres" maxlength="30">
+                                        formControlName="validaApellidos" maxlength="30">
                                 <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaApellidos.touched">
                                         <span *ngIf="formsRegistra.controls.validaApellidos.hasError('required')">
                                                 El Apellido es requerido
@@ -66,11 +66,11 @@
                                 <input matInput name="correo" [(ngModel)]="alumno.correo"
                                         formControlName="validaCorreo" >
                                 <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaCorreo.touched">
-                                        <span *ngIf="formsRegistra.controls.validaTelefono.hasError('required')">
-                                                El Correo es requerido
+                                        <span *ngIf="formsRegistra.controls.validaCorreo.hasError('required')">
+                                                El correo es requerido
                                         </span>
-                                        <span *ngIf="formsRegistra.controls.validaTelefono.hasError('pattern')">
-                                                El Correo tiene @
+                                        <span *ngIf="formsRegistra.controls.validaCorreo.hasError('pattern')">
+                                                El correo error de formato
                                         </span>
                                 </mat-hint>
                         </mat-form-field>
@@ -96,12 +96,13 @@
                                                 {{x.nombre}}
                                         </mat-option>
                                 </mat-select>
+                                <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaPais.touched">
+                                        <span *ngIf="formsRegistra.controls.validaPais.hasError('min')">
+                                                El Pais es requerido
+                                        </span>
+                                </mat-hint>
                         </mat-form-field>
-                        <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaPais.touched">
-                                <span *ngIf="formsRegistra.controls.validaPais.hasError('min')">
-                                        El Pais es requerido
-                                </span>
-                        </mat-hint>
+                       
                         <mat-form-field class="col-md-4">
                                 <mat-label>Modalidad</mat-label>
                                 <mat-select [(ngModel)]="alumno.modalidad!.idDataCatalogo" name="modalidad"
@@ -111,17 +112,18 @@
                                                 {{x.descripcion}}
                                         </mat-option>
                                 </mat-select>
+                                <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaPais.touched">
+                                        <span *ngIf="formsRegistra.controls.validaPais.hasError('min')">
+                                                La modalidad es requerido
+                                        </span>
+                                </mat-hint>
                         </mat-form-field>
-                        <mat-hint style="color: red" *ngIf="formsRegistra.controls.validaPais.touched">
-                                <span *ngIf="formsRegistra.controls.validaPais.hasError('min')">
-                                        La modalidad es requerido
-                                </span>
-                        </mat-hint>
+                        
                 </div>
 
                 <div mat-dialog-actions>
                         <button mat-raised-button type="submit" (click)="registra()" color="primary"
-                                 [mat-dialog-close]="1">
+                        [disabled]="formsRegistra.invalid"  [mat-dialog-close]="1">
                                 Registra
                         </button>
                 </div>
