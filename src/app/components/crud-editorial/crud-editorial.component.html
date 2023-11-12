@@ -1,45 +1,55 @@
 <app-menu></app-menu>
-<div class="container">
-  <div class="row">
+
+<div class="container mt-3">
+  <mat-card class="example-card">
     <mat-toolbar color="primary">
       <span>Listado de Editoriales</span>
     </mat-toolbar>
-  </div>
-  <div class="row mt-3">
-    <button mat-raised-button type="button" color="accent" class="mr-2" (click)="refresh()">
-      <i class="fas fa-sync-alt"></i> Refrescar
-    </button>
-    <button mat-raised-button type="button" color="primary" class="ml-2" (click)="nuevaEditorial()">
-      <i class="fas fa-plus"></i> Registrar
-    </button>
-  </div>
-  <div class="row mt-3">
-    <table class="table">
-      <thead>
-      <tr>
-        <th>Razón Social</th>
-        <th>Dirección</th>
-        <th>RUC</th>
-        <th>Fecha de Creación</th>
-        <th>País</th>
-        <th>Acciones</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let editorial of listaEditoriales">
-        <td>{{ editorial.razonSocial }}</td>
-        <td>{{ editorial.direccion }}</td>
-        <td>{{ editorial.ruc }}</td>
-        <td>{{ editorial.fechaCreacion | date: 'dd/MM/yyyy' }}</td>
-        <td>{{ editorial.pais.nombre }}</td>
-        <td class="align-items-center">
-          <div class="d-flex align-items-center">
-            <button class="btn p-0 m-0" mat-icon-button (click)="editarEditorial(editorial)"><i class="fas fa-pencil-alt"></i></button>
-            <button class="btn p-0 m-0" mat-icon-button (click)="editorial.idEditorial && eliminarEditorial(editorial.idEditorial)"><i class="fas fa-trash"></i></button>
-          </div>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+
+    <div class="container mt-3">
+      <div class="row container">
+        <button mat-raised-button type="button" color="accent" class="mr-2" (click)="refresh()">
+          <mat-icon>refresh</mat-icon> Refrescar
+        </button>
+        <button mat-raised-button type="button" color="primary" class="ml-2" (click)="nuevaEditorial()">
+          <mat-icon>add</mat-icon> Registrar
+        </button>
+      </div>
+      <div class="row mt-3 container">
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Razón Social</th>
+            <th>Dirección</th>
+            <th>RUC</th>
+            <th>Fecha de Creación</th>
+            <th>Fecha de Actualización</th>
+            <th>País</th>
+            <th>Acciones</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let editorial of listaEditoriales">
+            <td>{{ editorial.razonSocial }}</td>
+            <td>{{ editorial.direccion }}</td>
+            <td>{{ editorial.ruc }}</td>
+            <td>{{ editorial.fechaCreacion | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ editorial.fechaActualizacion | date: 'dd/MM/yyyy' }}</td>
+            <td>{{ editorial.pais.nombre }}</td>
+            <td class="align-items-center">
+              <div class="d-flex align-items-center">
+                <button class="btn p-0 m-0" mat-icon-button (click)="editarEditorial(editorial)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button class="btn p-0 m-0" mat-icon-button (click)="editorial.idEditorial && eliminarEditorial(editorial.idEditorial)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </mat-card>
 </div>

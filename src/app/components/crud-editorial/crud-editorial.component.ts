@@ -3,6 +3,7 @@ import { Editorial } from '../../models/editorial.model';
 import { EditorialService } from '../../services/editorial.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-crud-editorial',
